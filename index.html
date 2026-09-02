@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="light dark">
+  <meta name="color-scheme" content="light">
   <meta name="description" content="Privacy Policy for the TopScore Android app.">
   <title>Privacy Policy - TopScore</title>
   <style>
     :root {
-      color-scheme: light dark;
-      --background: #f5f7fb;
+      color-scheme: light;
+      --background: #fafafa;
       --surface: #ffffff;
       --text: #172033;
       --muted: #5f697c;
@@ -17,19 +17,6 @@
       --accent-soft: #e8efff;
       --border: #dfe4ee;
       --shadow: 0 14px 40px rgba(23, 32, 51, 0.08);
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --background: #0e1420;
-        --surface: #161e2d;
-        --text: #edf2ff;
-        --muted: #acb7ca;
-        --accent: #8eaeff;
-        --accent-soft: #23345c;
-        --border: #2b3548;
-        --shadow: none;
-      }
     }
 
     * { box-sizing: border-box; }
@@ -123,7 +110,7 @@
   <main>
     <p class="eyebrow">TopScore for Android</p>
     <h1>Privacy Policy - TopScore</h1>
-    <p class="meta">Effective date and last updated: August 30, 2026</p>
+    <p class="meta">Effective date: August 30, 2026; last updated: September 2, 2026</p>
 
     <p>
       TopScore ("TopScore", "we", "us", or "our") is an unofficial football
@@ -146,7 +133,8 @@
         <li>Your followed leagues, teams, and players and your display preferences are stored locally, subject to Android backup settings.</li>
         <li>Search terms and requests for football content are sent to the TopScore API.</li>
         <li>The app displays banner and native ads using Google AdMob.</li>
-        <li>The app does not integrate separate Firebase Analytics, Crashlytics, or Cloud Messaging services.</li>
+        <li>Where required, Google's User Messaging Platform (UMP) presents and records advertising privacy choices before ads are requested.</li>
+        <li>Firebase Crashlytics and Google Analytics are integrated to collect crash reports and aggregate app usage metrics for app stability and performance.</li>
       </ul>
     </section>
 
@@ -179,7 +167,7 @@
       <li>theme mode and selected color palette;</li>
       <li>a developer-server address in debug/development builds, if configured;</li>
       <li>cached football responses and images used to improve loading and limited offline availability; and</li>
-      <li>temporary in-memory advertising state.</li>
+      <li>advertising consent status and choices stored on the device by Google's User Messaging Platform, together with temporary in-memory advertising state.</li>
     </ul>
     <p>
       TopScore does not upload a standalone favorites list to our backend. However,
@@ -219,7 +207,7 @@
       and privacy practices.
     </p>
 
-    <h3>Google AdMob</h3>
+    <h3>Google AdMob and User Messaging Platform</h3>
     <p>
       TopScore uses the Google Mobile Ads SDK (AdMob) to display banner and native
       advertisements. Google and its advertising partners may collect or process
@@ -233,6 +221,14 @@
       <li>diagnostic, fraud-prevention, and security information.</li>
     </ul>
     <p>
+      Where required by applicable privacy rules, TopScore uses Google's User
+      Messaging Platform (UMP) to determine whether a privacy message is required,
+      present advertising choices, and remember the user's selection. UMP may
+      process consent status, app and device information, and regional
+      applicability signals for these purposes. Ads are not requested until UMP
+      indicates that ad requests are permitted under the configured message.
+    </p>
+    <p>
       Google uses this information to deliver and measure ads, limit repetition,
       detect fraud and abuse, and, where permitted, personalize advertising. Even
       non-personalized ads can use identifiers or local storage for frequency
@@ -243,12 +239,46 @@
       <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">Advertising information</a>.
     </p>
 
+    <h3>Firebase Analytics and Crashlytics</h3>
+    <p>
+      TopScore uses Google Analytics for Firebase to understand app usage in
+      aggregate and Firebase Crashlytics to detect, diagnose, and fix crashes and
+      non-fatal technical errors. Depending on device settings and availability,
+      these services may automatically process:
+    </p>
+    <ul>
+      <li>an app-instance identifier, Firebase installation identifier, Crashlytics installation UUID, and Advertising ID where available;</li>
+      <li>approximate location inferred from a masked IP address;</li>
+      <li>device model, operating system, app version, language, network, and other app or device metadata;</li>
+      <li>app lifecycle, session, screen-view, and interaction events;</li>
+      <li>crash stack traces, relevant app and device state, crash counts, and diagnostic information; and</li>
+      <li>developer-supplied diagnostic details, currently limited to the TopScore version and non-fatal UMP consent-flow error messages.</li>
+    </ul>
+    <p>
+      Crashlytics may also use Analytics breadcrumb events showing app actions that
+      occurred shortly before a crash. TopScore does not set a Firebase user ID or
+      intentionally attach your name, email address, football search terms, or
+      favorites to Firebase reports. Firebase information is used for aggregate
+      usage measurement, crash reporting, troubleshooting, and improving app
+      stability. Learn more in Google's
+      <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">Privacy and Security in Firebase</a>
+      documentation and the
+      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>.
+    </p>
+    <p>
+      Where the published Google privacy message includes consent for Analytics,
+      the user's UMP selection is also interpreted through Google Consent Mode for
+      Analytics storage. Available choices can be reviewed through
+      <em>TopScore Settings &rarr; Manage ad privacy</em> when that entry is required.
+    </p>
+
     <h2>4. How information is used</h2>
     <p>Information described in this policy is used to:</p>
     <ul>
       <li>provide live scores, fixtures, standings, football statistics, search results, and followed-item views;</li>
       <li>remember app settings and customize the app on your device;</li>
       <li>load, measure, and secure advertising;</li>
+      <li>measure aggregate app usage and diagnose crashes and non-fatal errors;</li>
       <li>operate, protect, troubleshoot, and improve the app and API;</li>
       <li>respond when you choose to contact us; and</li>
       <li>comply with law and enforce applicable terms.</li>
@@ -257,7 +287,8 @@
     <h2>5. When information is shared</h2>
     <p>Information may be shared or made available in these circumstances:</p>
     <ul>
-      <li><strong>Google and advertising partners:</strong> through the Google Mobile Ads SDK for the advertising purposes described above.</li>
+      <li><strong>Google and advertising partners:</strong> through the Google Mobile Ads SDK and User Messaging Platform for the advertising and consent-management purposes described above.</li>
+      <li><strong>Google Firebase:</strong> through Analytics, Crashlytics, Firebase Installations, and Firebase Sessions for aggregate usage measurement, crash reporting, diagnostics, and app-stability purposes.</li>
       <li><strong>Infrastructure and content providers:</strong> providers that host the TopScore API or deliver football images and flags.</li>
       <li><strong>Your chosen apps:</strong> when you intentionally use Android's share sheet or send a feedback email. The selected app's privacy policy applies.</li>
       <li><strong>Legal and safety reasons:</strong> if reasonably necessary to comply with law, protect rights or safety, investigate abuse, or secure the service.</li>
@@ -292,13 +323,19 @@
       that identifier in system privacy or ads settings. Limiting personalization
       does not necessarily remove ads.
     </p>
+    <p>
+      In regions where Google requires a privacy-options entry point, you can
+      review or change your advertising choices from <em>TopScore Settings &rarr;
+      Manage ad privacy</em>. Withdrawing consent can result in non-personalized or
+      limited ads rather than removing advertising entirely.
+    </p>
 
     <h2>8. Data retention</h2>
     <ul>
       <li><strong>Local app data:</strong> remains until you change it, clear TopScore's storage, or uninstall the app, subject to any Android cloud backup or device-transfer copy.</li>
       <li><strong>API and infrastructure records:</strong> standard server and security records, if generated, are kept only as long as reasonably necessary for operations, security, abuse prevention, and legal obligations.</li>
       <li><strong>Feedback:</strong> correspondence is kept as long as needed to respond, maintain support history, protect legal rights, and meet legal obligations.</li>
-      <li><strong>Advertising and Android backup data:</strong> is retained by Google and relevant providers according to their policies and your settings.</li>
+      <li><strong>Advertising, consent, Analytics, Crashlytics, Firebase installation/session, and Android backup data:</strong> is retained by Google and relevant providers according to their policies, retention settings, and your choices.</li>
     </ul>
 
     <h2 id="data-deletion">9. Accessing or deleting information</h2>
@@ -306,7 +343,8 @@
     <ul>
       <li>To delete local preferences and cache, use <em>Android Settings &rarr; Apps &rarr; TopScore &rarr; Storage &rarr; Clear storage</em>, or uninstall TopScore.</li>
       <li>Manage or delete Android device backups through your Android or Google account backup settings.</li>
-      <li>Manage Google's advertising activity and personalization through Android ads settings and Google My Ad Center.</li>
+      <li>Manage applicable in-app advertising consent choices through <em>TopScore Settings &rarr; Manage ad privacy</em>, and manage Google's advertising activity through Android ads settings and Google My Ad Center.</li>
+      <li>Clearing TopScore's storage or uninstalling the app removes local Firebase identifiers from that installation and stops future collection from that copy of the app. Previously collected Analytics and Crashlytics records are subject to Google's retention and deletion processes.</li>
       <li>To request access to or deletion of information you sent directly to us, email <a href="mailto:tofa.du@gmail.com">tofa.du@gmail.com</a>.</li>
     </ul>
     <p>
