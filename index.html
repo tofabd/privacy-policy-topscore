@@ -110,15 +110,15 @@
   <main>
     <p class="eyebrow">TopScore for Android</p>
     <h1>Privacy Policy - TopScore</h1>
-    <p class="meta">Effective date: August 30, 2026; last updated: September 2, 2026</p>
+    <p class="meta">Effective date: August 30, 2026; last updated: September 19, 2026</p>
 
     <p>
       TopScore ("TopScore", "we", "us", or "our") is an unofficial football
       scores and statistics app. It provides fixtures, live scores, match details,
-      standings, player and team information, comparisons, search, favorites, and
-      a home-screen widget. This Privacy Policy explains what information is
-      processed when you use the TopScore Android app and the choices available to
-      you.
+      standings, player and team information, comparisons, search, favorites,
+      push notifications, and a home-screen widget. This Privacy Policy explains
+      what information is processed when you use the TopScore Android app and the
+      choices available to you.
     </p>
     <p>
       TopScore is not affiliated with, endorsed by, or sponsored by any football
@@ -132,6 +132,7 @@
         <li>We do not ask for your name, phone number, precise location, contacts, photos, or payment information.</li>
         <li>Your followed leagues, teams, and players and your display preferences are stored locally, subject to Android backup settings.</li>
         <li>Search terms and requests for football content are sent to the TopScore API.</li>
+        <li>If you choose to enable match alerts, we use Firebase Cloud Messaging (FCM) to deliver real-time notifications for goals, kickoffs, red cards, and match events.</li>
         <li>The app displays banner and native ads using Google AdMob.</li>
         <li>Where required, Google's User Messaging Platform (UMP) presents and records advertising privacy choices before ads are requested.</li>
         <li>Firebase Crashlytics and Google Analytics are integrated to collect crash reports and aggregate app usage metrics for app stability and performance.</li>
@@ -165,21 +166,27 @@
     <ul>
       <li>IDs of leagues, teams, and players you follow;</li>
       <li>theme mode and selected color palette;</li>
+      <li>notification preferences and recent event IDs to prevent duplicate alerts;</li>
       <li>a developer-server address in debug/development builds, if configured;</li>
       <li>cached football responses and images used to improve loading and limited offline availability; and</li>
       <li>advertising consent status and choices stored on the device by Google's User Messaging Platform, together with temporary in-memory advertising state.</li>
     </ul>
     <p>
-      TopScore does not upload a standalone favorites list to our backend. However,
-      when the app retrieves details for followed items, the relevant football IDs
-      are necessarily included in those content requests.
+      TopScore stores your followed leagues, clubs, and players locally on your
+      device. We do not require a user account or maintain a personal user profile
+      on our backend. However, when the app retrieves details for followed items,
+      the relevant football IDs are included in those content requests. Additionally,
+      if push notifications are enabled, followed club, match, and player IDs are
+      synchronized alongside your device registration token to our notification
+      service to route relevant match event notifications to your device.
     </p>
     <p>
       Android backup is enabled for the app. Depending on your device, Android
       version, account, and backup settings, app preferences may be included in an
       encrypted Google backup or copied during device transfer. This process is
       controlled by Android and your backup provider, not by the TopScore backend.
-      See Google's
+      Installation-specific notification registration and pending-deletion state are excluded
+      from Android backup and device transfer. See Google's
       <a href="https://support.google.com/android/answer/2819582" target="_blank" rel="noopener noreferrer">Android backup information</a>.
     </p>
 
@@ -272,10 +279,39 @@
       <em>TopScore Settings &rarr; Manage ad privacy</em> when that entry is required.
     </p>
 
+    <h3>Firebase Cloud Messaging (Push Notifications)</h3>
+    <p>
+      TopScore provides opt-in push notifications for live match events, such
+      as goals, kickoffs, red cards, and full-time scores for matches, clubs, or
+      players you follow.
+    </p>
+    <p>
+      Upon app launch, Google's Firebase Cloud Messaging (FCM) service generates
+      a technical device registration token, which the app normally registers with the TopScore
+      API (<code>https://topscore.tofalabs.com/api/</code>). Generating and registering
+      this technical token is separate from the Android notification display permission:
+      match event notifications will only be posted to your screen if you grant the
+      runtime notification permission (<code>POST_NOTIFICATIONS</code> on Android 13+)
+      and choose to follow matches, clubs, or players. After you use Delete notification data,
+      the app suppresses registration with the TopScore backend for that installation until
+      you turn Push Notifications on again. Google may still manage technical Firebase identifiers
+      under its own lifecycle rules; this action does not delete Analytics or Crashlytics data.
+    </p>
+    <p>
+      When you select followed clubs, matches, or notification preferences, the app
+      synchronizes the relevant football entity IDs (clubs, matches, players) with our
+      backend so event messages can be properly routed. The FCM token is an arbitrary
+      pseudonymous device identifier: it is not linked to your personal identity, name,
+      or email, and is not used for advertising profiling. You can turn notifications
+      off or customize alert categories at any time within <em>TopScore Settings &rarr;
+      Notifications</em> or via Android system settings.
+    </p>
+
     <h2>4. How information is used</h2>
     <p>Information described in this policy is used to:</p>
     <ul>
       <li>provide live scores, fixtures, standings, football statistics, search results, and followed-item views;</li>
+      <li>deliver opted-in live match notifications, goal alerts, and kickoff alerts;</li>
       <li>remember app settings and customize the app on your device;</li>
       <li>load, measure, and secure advertising;</li>
       <li>measure aggregate app usage and diagnose crashes and non-fatal errors;</li>
@@ -288,7 +324,7 @@
     <p>Information may be shared or made available in these circumstances:</p>
     <ul>
       <li><strong>Google and advertising partners:</strong> through the Google Mobile Ads SDK and User Messaging Platform for the advertising and consent-management purposes described above.</li>
-      <li><strong>Google Firebase:</strong> through Analytics, Crashlytics, Firebase Installations, and Firebase Sessions for aggregate usage measurement, crash reporting, diagnostics, and app-stability purposes.</li>
+      <li><strong>Google Firebase:</strong> through Firebase Cloud Messaging (FCM) for push notification delivery, and through Analytics, Crashlytics, Firebase Installations, and Firebase Sessions for aggregate usage measurement, crash reporting, diagnostics, and app-stability purposes.</li>
       <li><strong>Infrastructure and content providers:</strong> providers that host the TopScore API or deliver football images and flags.</li>
       <li><strong>Your chosen apps:</strong> when you intentionally use Android's share sheet or send a feedback email. The selected app's privacy policy applies.</li>
       <li><strong>Legal and safety reasons:</strong> if reasonably necessary to comply with law, protect rights or safety, investigate abuse, or secure the service.</li>
@@ -303,14 +339,17 @@
     <h2>6. Permissions and device access</h2>
     <p>The app or its included advertising SDK uses these Android capabilities:</p>
     <ul>
-      <li><code>INTERNET</code>: fetch football data and images, load ads, and open online content.</li>
+      <li><code>INTERNET</code>: fetch football data and images, load ads, deliver push notifications, and open online content.</li>
       <li><code>ACCESS_NETWORK_STATE</code>: detect network availability.</li>
+      <li><code>POST_NOTIFICATIONS</code> (Android 13+): display opted-in live match notifications, goal alerts, and kickoff alerts. You can grant, deny, or revoke this permission at any time in system settings.</li>
       <li><code>AD_ID</code> and Android Privacy Sandbox advertising capabilities: advertising, measurement, attribution, and related controls where available. These may be added to the final app manifest by the Google Mobile Ads SDK.</li>
     </ul>
     <p>
       TopScore does not request runtime access to precise or approximate device
       location, camera, microphone, contacts, calendar, call logs, SMS, photos,
-      media, files, or notifications.
+      media, or files. The only runtime permission requested is
+      <code>POST_NOTIFICATIONS</code> on Android 13 and newer, which is requested
+      only if you choose to receive live match notifications.
     </p>
 
     <h2>7. Advertising choices</h2>
@@ -335,6 +374,8 @@
       <li><strong>Local app data:</strong> remains until you change it, clear TopScore's storage, or uninstall the app, subject to any Android cloud backup or device-transfer copy.</li>
       <li><strong>API and infrastructure records:</strong> standard server and security records, if generated, are kept only as long as reasonably necessary for operations, security, abuse prevention, and legal obligations.</li>
       <li><strong>Feedback:</strong> correspondence is kept as long as needed to respond, maintain support history, protect legal rights, and meet legal obligations.</li>
+      <li><strong>Push notification tokens and subscriptions:</strong> the backend stores an installation token, platform, app version, activity timestamps, and followed football entity IDs to route alerts. A successful registration or subscription sync refreshes the activity timestamp. Daily maintenance schedules deletion of registrations inactive for more than 90 days. Confirmed invalid FCM tokens and their associated subscription records are removed when detected. Finalized or cancelled match subscriptions become eligible for daily cleanup once the scheduled kickoff is more than 24 hours old; this is not a period measured from the final whistle. Team and player subscriptions remain until changed, deleted, or removed with the installation registration. Failed FCM updates and deletions remain pending for retry rather than being reported as complete. These processes require the backend and relevant services to be available. Uninstalling or clearing app storage does not directly delete backend records.</li>
+      <li><strong>Notification delivery records:</strong> pending match alerts are retried for up to five minutes; expired alerts are not sent again. Delivery and deduplication records are removed by daily maintenance after seven days. Database backups are separate from the active notification database and may retain earlier copies until those backups are rotated.</li>
       <li><strong>Advertising, consent, Analytics, Crashlytics, Firebase installation/session, and Android backup data:</strong> is retained by Google and relevant providers according to their policies, retention settings, and your choices.</li>
     </ul>
 
@@ -344,6 +385,8 @@
       <li>To delete local preferences and cache, use <em>Android Settings &rarr; Apps &rarr; TopScore &rarr; Storage &rarr; Clear storage</em>, or uninstall TopScore.</li>
       <li>Manage or delete Android device backups through your Android or Google account backup settings.</li>
       <li>Manage applicable in-app advertising consent choices through <em>TopScore Settings &rarr; Manage ad privacy</em>, and manage Google's advertising activity through Android ads settings and Google My Ad Center.</li>
+      <li>To manage alerts, visit <em>TopScore Settings &rarr; Notifications</em>. Turning the in-app Push Notifications switch off stops local alerts and requests removal of active server subscriptions after synchronization, but retains the device registration. Revoking permission in <em>Android Settings &rarr; Apps &rarr; TopScore &rarr; Notifications</em> blocks notification display; it does not delete backend records or automatically remove subscriptions.</li>
+      <li>Use <em>TopScore Settings &rarr; Notifications &rarr; Delete notification data</em> to request deletion of this installation's backend registration and subscriptions. Alerts turn off, favorites remain saved, and backend registration stays suppressed until you explicitly turn Push Notifications on again. Deletion needs a network connection. The app displays a pending state and retries while running and when reopened; the backend also retries pending cleanup. The app shows completion only after the deletion request and local token cleanup succeed. This action does not delete advertising, Analytics, Crashlytics, or backup data held by Google.</li>
       <li>Clearing TopScore's storage or uninstalling the app removes local Firebase identifiers from that installation and stops future collection from that copy of the app. Previously collected Analytics and Crashlytics records are subject to Google's retention and deletion processes.</li>
       <li>To request access to or deletion of information you sent directly to us, email <a href="mailto:tofa.du@gmail.com">tofa.du@gmail.com</a>.</li>
     </ul>
